@@ -29,7 +29,7 @@ public class Ventas {
 		private int cantidad;
 		
 		@Column
-		private int total;
+		private float total;
 		
 		public Ventas() {
 			super();
@@ -51,9 +51,9 @@ public class Ventas {
 		public void setCantidad(int c) {
 			if((this.producto.getStock()>=c)&&(c<=3)) {
 				if(this.cantidad<c){
-					this.producto.restarStock(c-this.cantidad);
+					this.producto.setStock(this.producto.getStock()-(c-this.cantidad));
 				}else if (this.cantidad>c){
-					this.producto.sumarStock(this.cantidad-c);
+					this.producto.setStock(this.producto.getStock()+(this.cantidad-c));
 				}
 				this.cantidad = c;
 			}
@@ -75,7 +75,7 @@ public class Ventas {
 			return fecha;
 		}
 
-		public int getTotal() {
+		public float getTotal() {
 			return total;
 		}
 

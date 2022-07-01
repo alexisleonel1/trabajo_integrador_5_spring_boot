@@ -44,8 +44,11 @@ public class ClienteService implements BaseService<Cliente>{
 	}
 
 	@Override
-	public void delete(int id) {
-		clienteRepository.deleteById(id);;
+	public boolean delete(int id) {
+		if (!this.clienteRepository.existsById(id)) 
+			return false;
+		clienteRepository.deleteById(id);
+		return true;
 	}
 	
 }

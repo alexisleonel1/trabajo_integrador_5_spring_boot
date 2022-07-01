@@ -15,54 +15,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.despensa.model.Cliente;
 import com.despensa.model.Producto;
-import com.despensa.model.Ventas;
-import com.despensa.service.VentasService;
-
+import com.despensa.service.ProductoService;
 
 @RestController
-@RequestMapping("/ventas")
-public class VentasController {
-
+@RequestMapping("/productos")
+public class ProductoController {
 	@Autowired
-	private VentasService ventasService;
-	
-	@GetMapping("")
-	public ResponseEntity<List<Ventas>> findAll(){
-		List<Ventas> ventas = ventasService.findAll();
-		if (ventas.isEmpty()) {
+	private ProductoService productoService;
+
+	@GetMapping("/")
+    	public ResponseEntity<List<Producto>> finAll() {
+		List<Producto>productos= productoService.findAll();      	
+		if (productos.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(ventas, HttpStatus.OK);
-	};
-	
+		return new ResponseEntity<>(productos, HttpStatus.OK);
+    	}
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Ventas> getVenta(@PathVariable(value="id")int id) {
-		Optional<Ventas> ventas = this.ventasService.find(id);
-		if (ventas.isEmpty()) {
+	public ResponseEntity<Producto> getProducto(@PathVariable(value="id")int id) {
+		Optional<Producto> producto = this.productoService.find(id);
+		if (producto.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(ventas.get(), HttpStatus.OK);
+		return new ResponseEntity<>(producto.get(), HttpStatus.OK);
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<?> postVentas(@RequestBody Ventas c) {
-		if(this.ventasService.create(c))
+	public ResponseEntity<?> postProducto(@RequestBody Producto p) {
+		if(this.productoService.create(p))
 			return new ResponseEntity<>(HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<?> updateProducto(@RequestBody Ventas v) {
-	    if(this.ventasService.update(v))
+	public ResponseEntity<?> updateProducto(@RequestBody Producto p) {
+	    if(this.productoService.update(p))
 			return new ResponseEntity<>(HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteVentas(@PathVariable(value="id")int id) {
-		  if(this.ventasService.delete(id))
-				return new ResponseEntity<>(HttpStatus.OK);
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	public ResponseEntity<?> deleteProducto(@PathVariable(value = "id")int id) { 
+	    if(this.productoService.delete(id))
+			return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 }

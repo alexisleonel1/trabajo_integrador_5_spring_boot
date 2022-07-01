@@ -13,5 +13,5 @@ public interface BaseService<t> {
 	
 	public boolean update(t t);
 	
-	public void delete(int id);
+	public boolean delete(int id);
 }

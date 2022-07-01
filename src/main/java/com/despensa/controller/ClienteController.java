@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.despensa.model.Cliente;
+import com.despensa.model.Ventas;
 import com.despensa.service.ClienteService;
 
 @RestController
@@ -31,7 +33,7 @@ public class ClienteController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(clientes, HttpStatus.OK);
-	};
+	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> getBook(@PathVariable(value="id")int id) {
@@ -49,10 +51,18 @@ public class ClienteController {
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
+	@PutMapping("")
+	public ResponseEntity<?> updateProducto(@RequestBody Cliente c) {
+		if(this.clienteService.update(c))
+			return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteBook(@PathVariable(value="id")int id) {
-		this.clienteService.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		if(this.clienteService.delete(id))
+			return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 
 }

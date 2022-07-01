@@ -45,8 +45,11 @@ public class VentasService implements BaseService<Ventas>{
 	}
 
 	@Override
-	public void delete(int id) {
-		ventasRepository.deleteById(id);;
+	public boolean delete(int id) {
+		if (!this.ventasRepository.existsById(id)) 
+			return false;
+		ventasRepository.deleteById(id);
+		return true;
 	}
 	
 }
