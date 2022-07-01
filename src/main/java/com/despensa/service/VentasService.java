@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import com.despensa.model.Producto;
 import com.despensa.model.Ventas;
 import com.despensa.repository.VentasRepository;
 
@@ -19,11 +20,21 @@ public class VentasService implements BaseService<Ventas>{
 	@Autowired
 	private VentasRepository ventasRepository;
 	
+	@Autowired
+	private ProductoService productoService;
+	
 	@Transactional
 	@Override
 	public boolean create(Ventas v) {
-		Ventas c = ventasRepository.save(v);
-		return c != null? true : false;
+		Producto p = v.getProducto();
+		if((v.getCantidad() > 0 && v.getCantidad() < 4) && p.getStock() >= v.getCantidad()) {
+			if(!ventasRepository.fullQuota(v.getFecha())) {/*,v.getCliente().getID(), p, v.getCantidad(), */
+				p.setStock(p.getStock()-v.getCantidad());
+				productoService.update(p);
+				return ventasRepository.save(v) != null? true : false;
+			}
+		}
+		return false;
 	}
 
 	@Override

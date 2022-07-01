@@ -16,13 +16,13 @@ public class Producto {
 	@Column
 	private int stock;
 	@Column
-	private float precio;
+	private double precio;
 	
 	public Producto() {
-		
+		super();
 	}
 
-	public Producto(String nombre, int stock, float precio) {
+	public Producto(String nombre, int stock, double precio) {
 		super();
 		this.nombre = nombre;
 		this.stock = stock;
@@ -45,7 +45,7 @@ public class Producto {
 		this.stock = stock;
 	}
 
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 

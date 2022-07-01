@@ -2,12 +2,15 @@ package com.despensa.model;
 
 
 import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -23,13 +26,14 @@ public class Ventas {
 		private Producto producto;
 		
 		@Column
+		@JsonFormat(pattern = "yyyy-MM-dd")
 		private Timestamp fecha;
 		
 		@Column
 		private int cantidad;
 		
 		@Column
-		private float total;
+		private double total;
 		
 		public Ventas() {
 			super();
@@ -75,7 +79,7 @@ public class Ventas {
 			return fecha;
 		}
 
-		public float getTotal() {
+		public double getTotal() {
 			return total;
 		}
 

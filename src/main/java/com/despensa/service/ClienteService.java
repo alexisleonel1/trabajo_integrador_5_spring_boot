@@ -4,16 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import com.despensa.dto.ClienteCompraTotalDTO;
 import com.despensa.model.Cliente;
 import com.despensa.repository.ClienteRepository;
 
 @Service
 @Validated
-public class ClienteService implements BaseService<Cliente>{
+public class ClienteService implements IClienteService{
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -49,6 +51,11 @@ public class ClienteService implements BaseService<Cliente>{
 			return false;
 		clienteRepository.deleteById(id);
 		return true;
+	}
+
+	@Override
+	public List<ClienteCompraTotalDTO> getClientesByVentas() {
+		return clienteRepository.getClientesByVentas();
 	}
 	
 }

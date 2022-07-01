@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.despensa.dto.ClienteCompraTotalDTO;
 import com.despensa.model.Cliente;
 import com.despensa.model.Ventas;
 import com.despensa.service.ClienteService;
@@ -36,12 +37,21 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> getBook(@PathVariable(value="id")int id) {
+	public ResponseEntity<Cliente> getCliente(@PathVariable(value="id")int id) {
 		Optional<Cliente> cliente = this.clienteService.find(id);
 		if (cliente.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/compras")
+	public ResponseEntity<List<ClienteCompraTotalDTO>> getCompras() {
+		List<ClienteCompraTotalDTO> clientes = this.clienteService.getClientesByVentas();
+		if (clientes.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(clientes, HttpStatus.OK);
 	}
 	
 	@PostMapping("")
