@@ -1,7 +1,5 @@
 package com.despensa.service;
 
-
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import com.despensa.dto.VentasByDayDTO;
 import com.despensa.model.Producto;
 import com.despensa.model.Ventas;
 import com.despensa.repository.VentasRepository;
@@ -66,9 +65,8 @@ public class VentasService implements IVentasService{
 	}
 
 	@Override
-	public List<Ventas> ventasByDay(Date f) {
-		return ventasRepository.ventasByDay(f);
+	public List<VentasByDayDTO> ventasByDay() {
+		return ventasRepository.ventasByDay();
 	}
-	
 	
 }

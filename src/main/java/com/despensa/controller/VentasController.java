@@ -1,10 +1,5 @@
 package com.despensa.controller;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.despensa.dto.VentasByDayDTO;
 import com.despensa.model.Ventas;
 import com.despensa.service.VentasService;
 
@@ -49,10 +45,9 @@ public class VentasController {
 		return new ResponseEntity<>(ventas.get(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/ventas-por-dia/{f}")
-	public ResponseEntity<List<Ventas>> getVentaByDay(@PathVariable(value="f")String f) throws ParseException{
-		Date fecha=transformDate(f);
-		List<Ventas> ventas = this.ventasService.ventasByDay(fecha);
+	@GetMapping("/ventas-por-dia")
+	public ResponseEntity<List<VentasByDayDTO>> getVentaByDay() {
+		List<VentasByDayDTO> ventas = this.ventasService.ventasByDay();
 		if (ventas.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -78,13 +73,5 @@ public class VentasController {
 		  if(this.ventasService.delete(id))
 				return new ResponseEntity<>(HttpStatus.OK);
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-	}
-	
-	private Date transformDate(String date) throws ParseException {
-		DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
-		Date d = dateFormat.parse(date);
-		/*long time = d.getTime();
-		Timestamp dateTransform = new Timestamp(time);*/
-		return d;
 	}
 }
