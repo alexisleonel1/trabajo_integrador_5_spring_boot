@@ -1,5 +1,7 @@
 package com.despensa.service;
 
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +17,7 @@ import com.despensa.repository.VentasRepository;
 
 @Service
 @Validated
-public class VentasService implements BaseService<Ventas>{
+public class VentasService implements IVentasService{
 
 	@Autowired
 	private VentasRepository ventasRepository;
@@ -28,7 +30,7 @@ public class VentasService implements BaseService<Ventas>{
 	public boolean create(Ventas v) {
 		Producto p = v.getProducto();
 		if((v.getCantidad() > 0 && v.getCantidad() < 4) && p.getStock() >= v.getCantidad()) {
-			if(!ventasRepository.fullQuota(v.getFecha())) {/*,v.getCliente().getID(), p, v.getCantidad(), */
+			if(!ventasRepository.fullQuota(v.getFecha())) {/*v.getCliente().getID()), p.getID(), v.getCantidad(), */
 				p.setStock(p.getStock()-v.getCantidad());
 				productoService.update(p);
 				return ventasRepository.save(v) != null? true : false;
@@ -62,5 +64,11 @@ public class VentasService implements BaseService<Ventas>{
 		ventasRepository.deleteById(id);
 		return true;
 	}
+
+	@Override
+	public List<Ventas> ventasByDay(Date f) {
+		return ventasRepository.ventasByDay(f);
+	}
+	
 	
 }

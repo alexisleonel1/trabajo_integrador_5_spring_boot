@@ -1,7 +1,7 @@
 package com.despensa.model;
 
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class Ventas {
 		
 		@Column
 		@JsonFormat(pattern = "yyyy-MM-dd")
-		private Timestamp fecha;
+		private Date fecha;
 		
 		@Column
 		private int cantidad;
@@ -39,7 +39,7 @@ public class Ventas {
 			super();
 		}
 		
-		public Ventas(Cliente cliente, Producto producto, Timestamp fecha, int cantidad) {
+		public Ventas(Cliente cliente, Producto producto, Date fecha, int cantidad) {
 			super();
 			this.cliente=cliente;
 			this.producto=producto;
@@ -75,7 +75,7 @@ public class Ventas {
 			return producto;
 		}
 
-		public Timestamp getFecha() {
+		public Date getFecha() {
 			return fecha;
 		}
 
