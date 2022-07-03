@@ -29,11 +29,9 @@ public class VentasService implements IVentasService{
 	public boolean create(Ventas v) {
 		Producto p = v.getProducto();
 		if((v.getCantidad() > 0 && v.getCantidad() < 4) && p.getStock() >= v.getCantidad()) {
-			if(!ventasRepository.fullQuota(v.getFecha())) {/*v.getCliente().getID()), p.getID(), v.getCantidad(), */
 				p.setStock(p.getStock()-v.getCantidad());
 				productoService.update(p);
 				return ventasRepository.save(v) != null? true : false;
-			}
 		}
 		return false;
 	}
@@ -67,6 +65,16 @@ public class VentasService implements IVentasService{
 	@Override
 	public List<VentasByDayDTO> ventasByDay() {
 		return ventasRepository.ventasByDay();
+	}
+
+	@Override
+	public Producto bestProduct() {
+		List<Producto> p = ventasRepository.bestProduct();
+		if(p.size() > 0) {
+			return p.get(0);
+		}else {
+			return null;
+		}
 	}
 	
 }

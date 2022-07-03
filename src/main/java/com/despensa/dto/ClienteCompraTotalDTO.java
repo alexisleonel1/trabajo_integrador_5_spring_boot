@@ -30,9 +30,4 @@ public class ClienteCompraTotalDTO {
 	public double getTotal() {
 		return total;
 	}
-
-	@Override
-	public String toString() {
-		return "CarrerasInscriptos [nombre=" + nombre + "]";
-	}
 }
