@@ -1,6 +1,7 @@
 package com.despensa.model;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,6 +81,26 @@ public class Ventas {
 
 		public double getTotal() {
 			return total;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public void setCliente(Cliente c) {
+			this.cliente = c;
+		}
+
+		public void setProducto(Producto producto) {
+			this.producto = producto;
+		}
+
+		public void setFecha(Date fecha) {
+			this.fecha = fecha;
+		}
+
+		public void setTotal(double total) {
+			this.total = total;
 		}
 
 }
