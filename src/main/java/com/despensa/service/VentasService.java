@@ -1,5 +1,6 @@
 package com.despensa.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import com.despensa.dto.VentasByDayDTO;
+import com.despensa.model.Cliente;
 import com.despensa.model.Producto;
 import com.despensa.model.Ventas;
 import com.despensa.repository.VentasRepository;

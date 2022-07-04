@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpringBoot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details>
+                <summary>Nuevo Cliente</summary>
+                <form  class="mb-3" id="formCliente">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" name="apellido">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </details>
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details>
+                <summary>Nuevo Producto</summary>
+                <form action="" class="mb-3" id="formProducto">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="precio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" name="stock">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </details>
+            
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details>
+                <summary>Realizar Venta</summary>
+                <form action="" class="mb-3" id="formVenta">
+                <div class="mb-3">
+                    <label for="cliente" class="form-label">Clientes</label>
+                    <select class="form-select" name="cliente" id="selectClientes"></select>
+                </div>
+                <div class="mb-3">
+                    <label for="producto" class="form-label">Productos</label>
+                    <select class="form-select" name="producto" id="selectProducto"></select>
+                </div>
+                <div class="mb-3">
+                    <label for="cant" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" name="cant">
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </details>
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details>
+                <summary>Montos Por Clientes</summary>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre y apellido</th>
+                        <th scope="col">Monto Total</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tBodyClientesConMonto">
+                    </tbody>
+                </table>
+            </details>
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details>
+                <summary>Ventas por día</summary>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tBodyVentas">
+                    </tbody>
+                </table>
+            </details>
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+        <div class="col-12">
+            <hr class="border-primary border-3 opacity-75">
+            <details id="prodMasVendido">
+                <summary >Producto mas vendido</summary>
+                <div class="alert alert-primary" role="alert" id="masVendido">
+                   
+                </div>
+            </details>
+            <hr class="border-primary border-3 opacity-75">
+        </div>
+
+    </div>
+    <script src="js/js.js"></script>
+</body>
+</html>
