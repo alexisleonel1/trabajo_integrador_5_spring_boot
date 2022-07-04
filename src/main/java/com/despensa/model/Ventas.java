@@ -26,7 +26,7 @@ public class Ventas {
 		private Producto producto;
 		
 		@Column
-		@JsonFormat(pattern = "yyyy-MM-dd")
+		@JsonFormat(pattern = "YYYY-MM-DD")
 		private Date fecha;
 		
 		@Column
