@@ -1,6 +1,6 @@
 package com.despensa.model;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -26,10 +24,9 @@ public class Ventas {
 		@ManyToOne
 		private Producto producto;
 		
-
-		@Temporal(TemporalType.DATE)
+		@Column
 		@JsonFormat(pattern = "yyyy-MM-dd")
-		private Calendar fecha;
+		private Date fecha;
 		
 		@Column
 		private int cantidad;
@@ -41,7 +38,7 @@ public class Ventas {
 			super();
 		}
 		
-		public Ventas(Cliente cliente, Producto producto, Calendar fecha, int cantidad) {
+		public Ventas(Cliente cliente, Producto producto, Date fecha, int cantidad) {
 			super();
 			this.cliente=cliente;
 			this.producto=producto;
@@ -77,7 +74,7 @@ public class Ventas {
 			return producto;
 		}
 
-		public Calendar getFecha() {
+		public Date getFecha() {
 			return fecha;
 		}
 

@@ -28,8 +28,9 @@ public class VentasService implements IVentasService{
 	@Override
 	public boolean create(Ventas v) {
 		Producto p = v.getProducto();
-		if((v.getCantidad() > 0 && v.getCantidad() < 4) && p.getStock() >= v.getCantidad()) {
-				p.setStock(p.getStock()-v.getCantidad());
+		int cant = v.getCantidad()/2 >= 1? v.getCantidad()/2 : 1;
+		if((cant > 0 && cant < 4) && p.getStock() >= cant) {
+				p.setStock(p.getStock()-cant);
 				productoService.update(p);
 				return ventasRepository.save(v) != null? true : false;
 		}

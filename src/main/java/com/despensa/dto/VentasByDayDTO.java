@@ -1,19 +1,19 @@
 package com.despensa.dto;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class VentasByDayDTO {
 
-	private Calendar fecha;
+	private String fecha;
 	private long cantidad;
 	
-	public VentasByDayDTO(Calendar fecha,long cantidad) {
+	public VentasByDayDTO(Date fecha,long cantidad) {
 		super();
-		this.fecha = fecha;
+		this.fecha = fecha.toString();
 		this.cantidad = cantidad;
 	}
 
-	public Calendar getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
